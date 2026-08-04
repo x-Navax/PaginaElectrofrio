@@ -1,0 +1,4 @@
+id,nombre,categoria,precio,imagen,descripcion,destacado,stock,marca
+1,Disyuntor diferencial Schneider 2P,Electricidad,78500,https://ejemplo.com/imagen1.jpg,Protección diferencial para instalaciones eléctricas,SI,Disponible,Schneider
+2,Bomba de vacío profesional,Refrigeración,289900,https://ejemplo.com/imagen2.jpg,Ideal para instalación y mantenimiento de equipos,SI,Disponible,Genérica
+3,Capacitor para aire acondicionado,Repuestos,9800,https://ejemplo.com/imagen3.jpg,Diferentes capacidades disponibles,NO,Disponible,Universal
