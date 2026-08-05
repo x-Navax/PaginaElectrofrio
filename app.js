@@ -191,7 +191,8 @@ async function loadProducts() {
 
     const products = rows
       .map(normalizeProduct)
-      .filter(product => product.nombre);
+      .filter(product => product.nombre)
+      .filter(product => product.activo);
 
     if (!products.length) {
       throw new Error('No se encontró la columna "nombre". Revisá los encabezados.');
@@ -314,6 +315,7 @@ function normalizeProduct(row, index) {
     imagen: normalizeImageUrl(row.imagen || row.foto || ""),
     descripcion: row.descripcion || "",
     destacado: parseBoolean(row.destacado),
+    activo: parseActive(row.activo),
     stock: row.stock || "Consultar",
     marca: row.marca || ""
   };
@@ -336,6 +338,27 @@ function parseBoolean(value) {
   return ["si", "sí", "true", "1", "x", "destacado"].includes(
     String(value || "").trim().toLowerCase()
   );
+}
+
+function parseActive(value) {
+  const normalizedValue = String(value || "")
+    .trim()
+    .toLowerCase();
+
+  // Si la celda está vacía, el producto queda activo.
+  // Esto evita que desaparezcan los productos que ya cargaste.
+  if (!normalizedValue) {
+    return true;
+  }
+
+  return [
+    "si",
+    "sí",
+    "true",
+    "1",
+    "x",
+    "activo"
+  ].includes(normalizedValue);
 }
 
 // Convierte links compartidos de Google Drive en links directos de imagen.
